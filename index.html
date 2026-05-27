@@ -2,30 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HPC - Panel de Acceso</title>
+    <title>Hello Produce Corp - Acceso</title>
+    <!-- Estilos originales -->
+    <link rel="stylesheet" href="./HPC — Catálogo Mayorista Premium_files/styles-wcwTZXKF.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; text-align: center; padding: 20px; }
-        .container { max-width: 500px; margin: 0 auto; }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #1a1a1a; color: #fff; text-transform: uppercase; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background: #c5c1b9; color: #000; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .admin-panel { background: #1a1a1a; border: 1px solid #c5c1b9; padding: 20px; border-radius: 12px; margin-top: 30px; text-align: left; }
+        .admin-panel { background: #1a1a1a; border: 1px solid #c5c1b9; padding: 20px; border-radius: 12px; margin-top: 30px; color: #fcfbf8; text-align: left; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Hello Produce Corp</h1>
-        <p>Ingresa tu código de cliente o administrador</p>
-        <form id="loginForm">
-            <input type="text" id="clientCode" placeholder="CÓDIGO DE ACCESO" required>
-            <button type="submit">INGRESAR</button>
+<body class="bg-background flex flex-col items-center min-h-screen">
+    
+    <!-- Logo con ruta corregida -->
+    <header class="py-10">
+        <img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" alt="Hello Produce Corp" class="h-28 w-auto">
+    </header>
+
+    <div class="w-full max-w-md px-6">
+        <form id="loginForm" class="space-y-3">
+            <input type="text" id="clientCode" placeholder="CÓDIGO DE ACCESO" class="w-full p-4 border rounded-xl text-center uppercase">
+            <button type="submit" class="w-full p-4 bg-primary text-white rounded-xl">INGRESAR</button>
         </form>
+
         <div id="adminPanel" class="admin-panel" style="display:none;">
             <h3>Panel de Administración</h3>
-            <input type="text" id="newName" placeholder="Nombre Restaurante">
-            <input type="text" id="newAddr" placeholder="Dirección">
-            <button onclick="addClient()">REGISTRAR CLIENTE</button>
-            <ul id="clientList" style="font-size: 12px; margin-top: 20px;"></ul>
+            <input type="text" id="newName" placeholder="Nombre Restaurante" class="w-full p-2 mb-2 text-black">
+            <input type="text" id="newAddr" placeholder="Dirección" class="w-full p-2 mb-2 text-black">
+            <button onclick="addClient()" class="w-full p-2 bg-yellow-600 text-white">REGISTRAR CLIENTE</button>
         </div>
     </div>
 
@@ -65,7 +66,7 @@
             const name = document.getElementById('newName').value;
             const code = name.toUpperCase().replace(/\s+/g, '-');
             clients[code] = document.getElementById('newAddr').value;
-            alert("Cliente agregado: " + code);
+            alert("Cliente registrado: " + code);
         }
     </script>
 </body>
