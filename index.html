@@ -2,45 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Produce Corp | Portal</title>
+    <title>HPC Pedidos</title>
     <style>
-        body { font-family: sans-serif; background: #fcfbf8; padding: 20px; }
-        .card { background: white; max-width: 400px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .admin-view { display: none; }
-        input, button { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; }
-        button { background: #27ae60; color: white; border: none; cursor: pointer; }
+        body { font-family: sans-serif; background: #fdfaf0; color: #333; padding: 20px; }
+        .hidden { display: none; }
+        .producto { border-bottom: 1px solid #ccc; padding: 10px; display: flex; justify-content: space-between; }
     </style>
 </head>
 <body>
 
-<div class="card" id="login">
-    <h1>HPC Portal</h1>
-    <input type="text" id="user" placeholder="Usuario (ej: ESQUINA MEXICANA)">
-    <input type="password" id="pass" placeholder="Contraseña">
-    <button onclick="check()">ENTRAR</button>
-</div>
+    <!-- Pantalla de Login -->
+    <div id="login-screen">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="user" placeholder="Nombre de usuario"><br>
+        <input type="password" id="pass" placeholder="Contraseña"><br>
+        <button onclick="login()">Entrar</button>
+    </div>
 
-<div class="card admin-view" id="app">
-    <h1>Catálogo HPC</h1>
-    <div id="catalogContent"></div>
-    <button onclick="order()">FINALIZAR PEDIDO</button>
-</div>
+    <!-- Pantalla de Catálogo -->
+    <div id="app-screen" class="hidden">
+        <h1>Catálogo Hello Produce Corp</h1>
+        <div id="lista-productos"></div>
+        <button onclick="enviarPedido()">Generar Pedido</button>
+        <div id="admin-section" class="hidden">
+            <h3>Panel Admin</h3>
+            <button onclick="verConsolidado()">Ver Total Despachos</button>
+        </div>
+    </div>
 
-<script>
-    function check() {
-        // Esto es un ejemplo, aquí es donde conectaríamos con la base de datos
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
-    }
-
-    function order() {
-        const h = new Date().getHours();
-        if (h < 24) {
-            alert("Your order has priority and will be delivered in the early hours of the day.");
-        } else {
-            alert("We are processing your order; it will be delivered throughout the day.");
-        }
-    }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
