@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <title>Hello Produce Corp - Pedidos</title>
     <style>
-        body { font-family: sans-serif; background: #fdfaf0; color: #333; padding: 20px; }
+        body { font-family: sans-serif; background: #fdfaf0; color: #333; padding: 20px; text-align: center; }
         .hidden { display: none; }
-        .producto { border-bottom: 1px solid #d4a373; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { width: 150px; margin-bottom: 20px; }
+        .producto { border-bottom: 1px solid #d4a373; padding: 15px; display: flex; justify-content: space-between; align-items: center; max-width: 500px; margin: 0 auto; }
         h1, h2 { color: #d68c45; }
-        button { background-color: #6a994e; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin-top: 10px; }
+        button { background-color: #6a994e; color: white; border: none; padding: 12px 20px; cursor: pointer; border-radius: 5px; margin-top: 10px; font-weight: bold; }
         button:hover { background-color: #386641; }
-        input { border: 1px solid #d4a373; padding: 5px; }
+        input { border: 1px solid #d4a373; padding: 8px; width: 60px; }
     </style>
 </head>
 <body>
 
+    <!-- Aquí va tu logo (asegúrate de tener el archivo logo.png en tu repositorio) -->
+    <img src="logo.png" alt="Logo HPC" class="logo">
+
     <!-- Pantalla de Login -->
     <div id="login-screen">
         <h2>Bienvenida a HPC</h2>
-        <input type="text" id="user" placeholder="Usuario"><br>
-        <input type="password" id="pass" placeholder="Contraseña"><br>
+        <input type="text" id="user" placeholder="Usuario" style="width: 200px; margin-bottom: 10px;"><br>
+        <input type="password" id="pass" placeholder="Contraseña" style="width: 200px; margin-bottom: 10px;"><br>
         <button onclick="login()">Entrar</button>
     </div>
 
@@ -30,8 +34,9 @@
         <button onclick="enviarPedido()">Enviar Pedido</button>
         
         <div id="admin-section" class="hidden">
-            <h2 style="color:#6a994e;">Panel Administrativo</h2>
+            <h2 style="color:#6a994e; margin-top:30px;">Panel Administrativo</h2>
             <button onclick="verConsolidado()">Ver Total Despachos</button>
+            <button onclick="agregarUsuario()" style="background-color: #d68c45;">Agregar Cliente</button>
         </div>
     </div>
 
