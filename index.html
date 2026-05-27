@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <title>Hello Produce Corp</title>
     <style>
-        body { font-family: sans-serif; background: #fdfaf0; padding: 20px; text-align: center; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fdfaf0; color: #333; padding: 20px; text-align: center; }
         .logo { width: 150px; margin-bottom: 20px; }
-        .producto { border-bottom: 1px solid #d4a373; padding: 10px; display: flex; justify-content: space-between; align-items: center; max-width: 400px; margin: 0 auto; }
-        button { background: #6a994e; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; }
+        .producto { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+        button { background: #6a994e; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        button:hover { background: #386641; }
+        input[type="number"] { width: 50px; padding: 5px; border: 1px solid #ddd; border-radius: 5px; }
         .hidden { display: none; }
     </style>
 </head>
 <body>
-    <img src="HPC%20%E2%80%94%20Cat%C3%A1logo%20Mayorista%20Premium_files/logo-hpc-CLIYfN25.jpeg" class="logo">
-    
-    <div id="login-screen">
+
+    <!-- Logo con la ruta corregida a tu carpeta -->
+    <img src="HPC%20%E2%80%94%20Cat%C3%A1logo%20Mayorista%20Premium_files/logo-hpc-CLIYfN25.jpeg" alt="Logo HPC" class="logo">
+
+    <div id="login-screen" class="card">
         <h2>Bienvenida</h2>
         <input type="text" id="user" placeholder="Usuario"><br>
         <input type="password" id="pass" placeholder="Contraseña"><br>
         <button onclick="login()">Entrar</button>
     </div>
-    <div id="app-screen" class="hidden">
+
+    <div id="app-screen" class="hidden" class="card">
         <h1>Catálogo</h1>
         <div id="lista-productos"></div>
         <button onclick="enviarPedido()">Enviar Pedido</button>
@@ -31,6 +37,7 @@
             <button onclick="agregarUsuario()" style="background:#d68c45;">Agregar Cliente</button>
         </div>
     </div>
+
     <script src="gemini-code-1779920088639.js"></script>
 </body>
 </html>
