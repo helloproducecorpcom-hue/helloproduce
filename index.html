@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello Produce Corp</title>
+    <link rel="stylesheet" href="styles-wcwTZXKF.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #fdfaf0; display: flex; justify-content: center; padding: 40px; }
+        body { font-family: sans-serif; background: #fdfaf0; display: flex; justify-content: center; padding: 40px; }
         .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 350px; text-align: center; }
         .logo { width: 150px; margin-bottom: 20px; }
-        input { width: 90%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; }
-        button { width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; margin-top: 10px; }
-        .btn-admin { background: #6a994e; }
-        .btn-chef { background: #d68c45; }
-        .hidden { display: none; }
     </style>
 </head>
 <body>
     <div class="card">
-        <!-- Logo con ruta limpia -->
-        <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+        <!-- RUTA EXACTA PARA EL ARCHIVO QUE TIENES EN LA RAÍZ -->
+        <img src="logo-hpc-CLIYfN25.jpeg" alt="Logo HPC" class="logo">
         
         <div id="login-screen">
             <h2>Ingreso al Sistema</h2>
             <input type="text" id="user" placeholder="Usuario">
             <input type="password" id="pass" placeholder="Contraseña">
-            <button class="btn-admin" onclick="intentarIngreso('admin')">Ingreso Administrador</button>
-            <button class="btn-chef" onclick="intentarIngreso('chef')">Ingreso Chef</button>
+            <button onclick="intentarIngreso('admin')" style="background:#6a994e; color:white; width:100%; border:none; padding:10px; border-radius:5px; margin-top:10px; cursor:pointer;">Ingreso Administrador</button>
+            <button onclick="intentarIngreso('chef')" style="background:#d68c45; color:white; width:100%; border:none; padding:10px; border-radius:5px; margin-top:10px; cursor:pointer;">Ingreso Chef</button>
         </div>
 
-        <div id="app-screen" class="hidden">
+        <div id="app-screen" style="display:none;">
             <h2 id="role-title"></h2>
             <div id="lista-productos"></div>
-            <button class="btn-admin" onclick="procesarOrden()">Generar Pre-Factura</button>
-            <div id="admin-panel" class="hidden">
-                <button class="btn-chef" onclick="verConsolidado()">Ver Total Despachos</button>
+            <button onclick="procesarOrden()" style="background:#6a994e; color:white; width:100%; border:none; padding:10px; border-radius:5px;">Generar Pre-Factura</button>
+            <div id="admin-panel" style="display:none; margin-top:10px;">
+                <button onclick="verConsolidado()" style="background:#d68c45; color:white; width:100%; border:none; padding:10px; border-radius:5px;">Ver Total Despachos</button>
             </div>
         </div>
     </div>
