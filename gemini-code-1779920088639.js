@@ -1,40 +1,83 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello Produce Corp - Pedidos</title>
-    <style>
-        body { font-family: sans-serif; background: #fdfaf0; color: #333; padding: 20px; }
-        .hidden { display: none; }
-        .producto { border-bottom: 1px solid #d4a373; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
-        h1, h2 { color: #d68c45; }
-        button { background-color: #6a994e; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin-top: 10px; }
-        button:hover { background-color: #386641; }
-        input { border: 1px solid #d4a373; padding: 5px; }
-    </style>
-</head>
-<body>
+// Usuarios autorizados
+const usuarios = { 
+    "cynthia": "123", 
+    "valentina": "456" 
+};
 
-    <!-- Pantalla de Login -->
-    <div id="login-screen">
-        <h2>Bienvenida a HPC</h2>
-        <input type="text" id="user" placeholder="Usuario"><br>
-        <input type="password" id="pass" placeholder="Contraseña"><br>
-        <button onclick="login()">Entrar</button>
-    </div>
+// Tus productos
+const productos = [
+    { nombre: "Aguacate", precio: 5 },
+    { nombre: "Tomate", precio: 2 },
+    { nombre: "Cebolla", precio: 1.8 }
+];
 
-    <!-- Pantalla de Catálogo -->
-    <div id="app-screen" class="hidden">
-        <h1>Catálogo Hello Produce Corp</h1>
-        <div id="lista-productos"></div>
-        <button onclick="enviarPedido()">Enviar Pedido</button>
-        
-        <div id="admin-section" class="hidden">
-            <h2 style="color:#6a994e;">Panel Administrativo</h2>
-            <button onclick="verConsolidado()">Ver Total Despachos</button>
-        </div>
-    </div>
+// Variable global para guardar los pedidos
+let pedidosRegistrados = [];
 
-    <script src="gemini-code-1779920088639.js"></script>
-</body>
-</html>
+function login() {
+    const u = document.getElementById('user').value.toLowerCase();
+    const p = document.getElementById('pass').value;
+    
+    if (usuarios[u] === p) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('app-screen').classList.remove('hidden');
+        document.getElementById('admin-section').classList.remove('hidden');
+        cargarCatalogo();
+    } else {
+        alert("Usuario o contraseña incorrectos");
+    }
+}
+
+function cargarCatalogo() {
+    const lista = document.getElementById('lista-productos');
+    lista.innerHTML = ""; 
+    productos.forEach(p => {
+        lista.innerHTML += `
+            <div class="producto">
+                <span>${p.nombre} - $${p.precio}</span>
+                <input type="number" class="cant" data-nombre="${p.nombre}" value="0" min="0">
+            </div>`;
+    });
+}
+
+function enviarPedido() {
+    let pedidoActual = {};
+    let hayPedido = false;
+    
+    document.querySelectorAll('.cant').forEach(input => {
+        let nombre = input.getAttribute('data-nombre');
+        let cantidad = parseInt(input.value);
+        if (cantidad > 0) {
+            pedidoActual[nombre] = cantidad;
+            hayPedido = true;
+        }
+    });
+    
+    if (hayPedido) {
+        pedidosRegistrados.push(pedidoActual);
+        alert("¡Pedido registrado exitosamente!");
+        // Limpiar inputs después de enviar
+        document.querySelectorAll('.cant').forEach(input => input.value = 0);
+    } else {
+        alert("Por favor, añade al menos un producto al pedido.");
+    }
+}
+
+function verConsolidado() {
+    let totalConsolidado = {};
+    
+    pedidosRegistrados.forEach(pedido => {
+        for (let producto in pedido) {
+            totalConsolidado[producto] = (totalConsolidado[producto] || 0) + pedido[producto];
+        }
+    });
+    
+    let mensaje = "TOTAL PARA DESPACHO:\n";
+    let vacio = true;
+    for (let prod in totalConsolidado) {
+        mensaje += `${prod}: ${totalConsolidado[prod]}\n`;
+        vacio = false;
+    }
+    
+    alert(vacio ? "No hay pedidos registrados aún." : mensaje);
+}
