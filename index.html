@@ -1,39 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Produce Corp - Acceso</title>
-    <link rel="stylesheet" href="./HPC — Catálogo Mayorista Premium_files/styles-wcwTZXKF.css">
+    <title>Hello Produce Corp</title>
 </head>
 <body>
-    <div style="text-align: center; padding-top: 50px;">
-        <img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" width="200" alt="Logo">
-        <h1>Acceso Administrador</h1>
-        <form id="loginForm">
-            <input type="text" id="code" placeholder="ESCRIBE TU CÓDIGO" style="padding: 10px; text-transform: uppercase;">
-            <button type="submit" style="padding: 10px;">INGRESAR</button>
-        </form>
-        <div id="adminPanel" style="display:none; margin-top: 20px; background: #f4f4f4; padding: 20px;">
-            <h2>Panel de Gestión</h2>
-            <input type="text" id="newName" placeholder="Nombre Restaurante">
-            <input type="text" id="newAddr" placeholder="Dirección">
-            <button onclick="registerClient()">REGISTRAR</button>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>Hello Produce Corp</h1>
+        <div id="loginSection">
+            <input type="text" id="pass" placeholder="Código de acceso">
+            <button onclick="check()">INGRESAR</button>
+        </div>
+        <div id="adminPanel" style="display:none;">
+            <h2>Panel de Administrador</h2>
+            <p>Bienvenida, Valentina.</p>
         </div>
     </div>
-
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const code = document.getElementById('code').value.toUpperCase();
-            if (code === "VALENTINA" || code === "CYNTHIA") {
+        function check() {
+            const p = document.getElementById('pass').value;
+            if (p === "VALENTINA" || p === "CYNTHIA") {
+                document.getElementById('loginSection').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'block';
             } else {
                 alert("Código incorrecto");
             }
-        });
-        function registerClient() {
-            alert("Cliente registrado exitosamente");
         }
     </script>
 </body>
