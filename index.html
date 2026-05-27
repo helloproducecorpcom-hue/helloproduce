@@ -1,147 +1,72 @@
 <!DOCTYPE html>
-<!-- saved from url=(0028)https://web-hpc.lovable.app/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" as="image" href="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" data-precedence="default"><link rel="stylesheet" href="./HPC — Catálogo Mayorista Premium_files/styles-wcwTZXKF.css" data-precedence="default"><title>HPC — Catálogo Mayorista Premium</title><meta name="author" content="Lovable"><meta property="og:title" content="HPC — Catálogo Mayorista Premium"><meta property="og:description" content="Plataforma B2B de frutas, hierbas y vegetales frescos al por mayor para bares y restaurantes."><meta property="og:type" content="website"><meta name="description" content="Acceso exclusivo para clientes de HPC. Frutas, hierbas y vegetales frescos al por mayor."><link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">
-<style>
-	@font-face {
-		font-family: 'CameraPlainVariable';
-		src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
-		font-weight: 100 900;
-		font-style: normal;
-		font-display: swap;
-	}
-	#lovable-badge { display: none !important; }
-	.admin-panel {
-		background: #1a1a1a;
-		border: 1px solid #c5c1b9;
-		padding: 20px;
-		border-radius: 12px;
-		margin-top: 30px;
-		text-align: left;
-		color: #fcfbf8;
-	}
-</style>
-</head><body><main class="min-h-screen bg-background flex flex-col"><header class="px-8 py-6 flex items-center justify-between"><span class="inline-flex items-center gap-2"><img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" alt="Hello Produce Corp" class="h-10 w-auto"><span class="font-serif tracking-wide text-lg hidden sm:inline">Hello Produce Corp</span></span>
-<div id="userProfileHeader" class="text-xs text-muted-foreground font-mono"></div>
-</header><section class="flex-1 grid place-items-center px-6"><div class="w-full max-w-md text-center"><img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" alt="Hello Produce Corp" class="mx-auto h-28 w-auto mb-6"><p class="text-xs tracking-[0.3em] text-muted-foreground uppercase mb-6">Catálogo Mayorista</p><h1 class="font-serif text-4xl md:text-5xl leading-tight mb-4">Frescura selecta,<br><span style="color:var(--gold-deep)">servida con elegancia.</span></h1><p class="text-muted-foreground mb-10">Ingresa tu Código de Cliente o Administrador para acceder.</p>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPC - Panel de Acceso</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; text-align: center; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #1a1a1a; color: #fff; text-transform: uppercase; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #c5c1b9; color: #000; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .admin-panel { background: #1a1a1a; border: 1px solid #c5c1b9; padding: 20px; border-radius: 12px; margin-top: 30px; text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello Produce Corp</h1>
+        <p>Ingresa tu código de cliente o administrador</p>
+        <form id="loginForm">
+            <input type="text" id="clientCode" placeholder="CÓDIGO DE ACCESO" required>
+            <button type="submit">INGRESAR</button>
+        </form>
+        <div id="adminPanel" class="admin-panel" style="display:none;">
+            <h3>Panel de Administración</h3>
+            <input type="text" id="newName" placeholder="Nombre Restaurante">
+            <input type="text" id="newAddr" placeholder="Dirección">
+            <button onclick="addClient()">REGISTRAR CLIENTE</button>
+            <ul id="clientList" style="font-size: 12px; margin-top: 20px;"></ul>
+        </div>
+    </div>
 
-<form class="space-y-3" id="loginForm"><input id="clientCodeInput" placeholder="ESQUINA-MEXICANA o VALENTINA" class="w-full text-center tracking-[0.2em] uppercase px-4 py-4 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-ring transition" autofocus="" value=""><button type="submit" class="w-full py-4 rounded-xl font-medium tracking-wide transition hover:opacity-90" style="background:linear-gradient(135deg, var(--gold), var(--gold-deep));color:var(--primary-foreground)">Ingresar al sistema</button></form>
-<p id="errorMessage" style="color: #ff6b6b; font-size: 14px; margin-top: 10px; display: none;">Código incorrecto. Inténtalo de nuevo.</p>
+    <script>
+        const admins = ["CYNTHIA", "VALENTINA"];
+        let clients = {
+            "ESQUINA-MEXICANA": "1361 Washington Ave, Miami Beach",
+            "COYOTE-TACO": "1351 Collins Ave, Miami Beach",
+            "RESTAURANTE-DON-SOMBRERO": "808 Collins Ave, Miami Beach",
+            "MAMAS-TACOS": "710 Washington Ave #3, Miami Beach",
+            "IL-BOLOGNESE": "1400 Ocean Drive LLC, Miami Beach",
+            "HAVANA-BEACH-RESTAURANT": "740 Ocean Drive, Miami Beach",
+            "ALMA-CUBANA": "650 Ocean Dr, Miami Beach",
+            "LA-VENTANA-COLOMBIAN-RESTAURANT": "710 Washington Ave #2, Miami Beach",
+            "ESQUINA-CUBANA": "710 Washington St, Miami Beach",
+            "HAVANA-VIEJA": "944 Washington Ave, Miami Beach",
+            "ATHENA-RESTAURANT": "560 Washington Ave, Miami Beach",
+            "LA-MULATA": "1443 Washington Ave, Miami Beach",
+            "OSTERIA-POSITANO": "1200 Collins Ave, Miami Beach",
+            "LITTLE-HABANA": "1051 Collins Ave, Miami Beach"
+        };
 
-<!-- PANEL DE ADMINISTRADOR OCULTO POR DEFECTO -->
-<div id="adminSection" class="admin-panel" style="display: none;">
-	<h3 class="font-serif text-xl mb-3" style="color: var(--gold);">Panel de Gestión de Clientes</h3>
-	<p class="text-xs text-muted-foreground mb-4">Registra nuevos clientes sin tocar el código fuente.</p>
-	<div class="space-y-2">
-		<input id="newClientName" placeholder="Nombre del Restaurante (Ej: Novikov)" style="width:100%; padding:10px; border-radius:6px; background:#2a2a2a; color:#fff; border:1px solid #444;">
-		<input id="newClientAddress" placeholder="Dirección Completa del local" style="width:100%; padding:10px; border-radius:6px; background:#2a2a2a; color:#fff; border:1px solid #444;">
-		<button id="saveClientBtn" style="width:100%; background:var(--gold); color:#000; padding:10px; border-radius:6px; font-weight:bold; margin-top:5px;">+ Registrar y Generar Código</button>
-	</div>
-	<div class="mt-4">
-		<p class="text-xs font-bold uppercase tracking-wider mb-2">Clientes agregados manualmente:</p>
-		<ul id="customClientsList" class="text-xs font-mono space-y-1 text-muted-foreground"></ul>
-	</div>
-</div>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const code = document.getElementById('clientCode').value.toUpperCase().trim();
+            if (admins.includes(code)) {
+                document.getElementById('adminPanel').style.display = 'block';
+                alert("Bienvenida Administradora");
+            } else if (clients[code]) {
+                window.location.href = 'catalogo.html';
+            } else {
+                alert("Código no reconocido");
+            }
+        });
 
-</div></section><footer class="px-8 py-6 text-center text-xs text-muted-foreground">© HPC · Distribución Premium</footer></main>
-
-<script>
-	// 1. Cuentas de Administración Fijas
-	const adminAccounts = {
-		"CYNTHIA": "Administradora Cynthia",
-		"VALENTINA": "Administradora Valentina"
-	};
-
-	// 2. Base de datos inicial de restaurantes de Hello Produce Corp
-	const baseClients = {
-		"CEVICHERIA-MAR-AZUL": "Cevichería Mar Azul", "BISTRO-LA-PALMA": "Bistró La Palma", 
-		"ROOFTOP-LOUNGE-5TH": "Rooftop Lounge 5th", "SUNSET-BAR-GRILL": "Sunset Bar & Grill", 
-		"HACIENDA-TROPICAL": "Hacienda Tropical", "ESQUINA-MEXICANA": "Esquina Mexicana", 
-		"COYOTE-TACO": "Coyote Taco", "RESTAURANTE-DON-SOMBRERO": "Restaurante Don Sombrero", 
-		"MAMAS-TACOS": "Mamas Tacos", "IL-BOLOGNESE": "IL Bolognese", 
-		"HAVANA-BEACH-RESTAURANT": "Havana Beach Restaurant", "ALMA-CUBANA": "Alma Cubana", 
-		"LA-VENTANA-COLOMBIAN-RESTAURANT": "La Ventana Colombian Restaurant", "ESQUINA-CUBANA": "Esquina Cubana", 
-		"HAVANA-VIEJA": "Havana Vieja", "ATHENA-RESTAURANT": "Athena Restaurant", 
-		"LA-MULATA": "La Mulata", "OSTERIA-POSITANO": "Osteria Positano", 
-		"LITTLE-HABANA": "Little Habana", "NOVIKOV": "Novikov"
-	};
-
-	// Cargar clientes adicionales que se guarden en el almacenamiento local de la app
-	function getCustomClients() {
-		return JSON.parse(localStorage.getItem('hpc_custom_clients')) || {};
-	}
-
-	// Renderizar la lista visual en el panel de control
-	function updateAdminList() {
-		const listEl = document.getElementById('customClientsList');
-		listEl.innerHTML = '';
-		const custom = getCustomClients();
-		Object.keys(custom).forEach(code => {
-			listEl.innerHTML += `<li>🔑 CODE: <strong>${code}</strong> -> ${custom[code].name}</li>`;
-		});
-	}
-
-	// 3. Manejo del Formulario de Ingreso Principal
-	document.getElementById('loginForm').addEventListener('submit', function(event) {
-		event.preventDefault();
-		const inputCode = document.getElementById('clientCodeInput').value.trim().toUpperCase();
-		const errorText = document.getElementById('errorMessage');
-		const customClients = getCustomClients();
-
-		// Escenario A: Es Administradora (Cynthia o Valentina)
-		if (adminAccounts[inputCode]) {
-			errorText.style.display = 'none';
-			localStorage.setItem('userRole', 'ADMIN');
-			localStorage.setItem('profileName', adminAccounts[inputCode]);
-			document.getElementById('userProfileHeader').innerText = `Sesión: ${adminAccounts[inputCode]}`;
-			document.getElementById('adminSection').style.display = 'block'; // Muestra el panel generador
-			updateAdminList();
-			return;
-		}
-
-		// Escenario B: Es un Cliente Base o uno Creado Manualmente
-		let clientName = baseClients[inputCode] || (customClients[inputCode] ? customClients[inputCode].name : null);
-		
-		if (clientName) {
-			errorText.style.display = 'none';
-			localStorage.setItem('userRole', 'CLIENTE');
-			localStorage.setItem('activeClientCode', inputCode);
-			localStorage.setItem('profileName', clientName);
-			// Redirige automáticamente al catálogo limpio
-			window.location.href = 'catalogo.html';
-		} else {
-			errorText.style.display = 'block';
-		}
-	});
-
-	// 4. Lógica para Generar y Guardar Clientes Manualmente en Caliente
-	document.getElementById('saveClientBtn').addEventListener('click', function() {
-		const nameInput = document.getElementById('newClientName').value.trim();
-		const addressInput = document.getElementById('newClientAddress').value.trim();
-		
-		if (!nameInput) {
-			alert('Por favor ingresa al menos el nombre del restaurante.');
-			return;
-		}
-
-		// Convierte automáticamente el nombre a formato de código seguro (Mayúsculas y con guiones)
-		const generatedCode = nameInput.toUpperCase()
-			.normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remueve tildes
-			.replace(/[^A-Z0-9 ]/g, "") // Quita caracteres raros
-			.replace(/\s+/g, "-"); // Cambia espacios por guiones
-
-		const customClients = getCustomClients();
-		customClients[generatedCode] = {
-			name: nameInput,
-			address: addressInput
-		};
-
-		localStorage.setItem('hpc_custom_clients', JSON.stringify(customClients));
-		
-		// Limpiar campos y actualizar lista visual
-		document.getElementById('newClientName').value = '';
-		document.getElementById('newClientAddress').value = '';
-		updateAdminList();
-		alert(`¡Cliente registrado con éxito!\nCódigo de Acceso: ${generatedCode}`);
-	});
-</script>
-</body></html>
+        function addClient() {
+            const name = document.getElementById('newName').value;
+            const code = name.toUpperCase().replace(/\s+/g, '-');
+            clients[code] = document.getElementById('newAddr').value;
+            alert("Cliente agregado: " + code);
+        }
+    </script>
+</body>
+</html>
