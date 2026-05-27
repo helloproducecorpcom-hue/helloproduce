@@ -1,43 +1,22 @@
-// Usuarios autorizados
-let usuarios = { 
-    "cynthia": "123", 
-    "valentina": "456" 
-};
-
-// Tus productos
+let usuarios = { "cynthia": "123", "valentina": "456" };
 const productos = [
     { nombre: "Aguacate", precio: 5 },
     { nombre: "Tomate", precio: 2 },
     { nombre: "Cebolla", precio: 1.8 }
 ];
-
 let pedidosRegistrados = [];
 
 function login() {
     const u = document.getElementById('user').value.toLowerCase();
     const p = document.getElementById('pass').value;
-    
     if (usuarios[u] === p) {
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('app-screen').classList.remove('hidden');
-        // Cynthia y Valentina siempre ven el panel admin
         if (u === "cynthia" || u === "valentina") {
             document.getElementById('admin-section').classList.remove('hidden');
         }
         cargarCatalogo();
-    } else {
-        alert("Usuario o contraseña incorrectos");
-    }
-}
-
-// Nueva función para el Administrador
-function agregarUsuario() {
-    let nuevoU = prompt("Nombre del nuevo cliente:");
-    let nuevoP = prompt("Contraseña para " + nuevoU + ":");
-    if (nuevoU && nuevoP) {
-        usuarios[nuevoU.toLowerCase()] = nuevoP;
-        alert("Cliente " + nuevoU + " agregado correctamente.");
-    }
+    } else { alert("Usuario o contraseña incorrectos"); }
 }
 
 function cargarCatalogo() {
@@ -62,11 +41,9 @@ function enviarPedido() {
     });
     if (hayPedido) {
         pedidosRegistrados.push(pedidoActual);
-        alert("¡Pedido registrado exitosamente!");
+        alert("¡Pedido registrado!");
         document.querySelectorAll('.cant').forEach(input => input.value = 0);
-    } else {
-        alert("Por favor, añade al menos un producto.");
-    }
+    } else { alert("Añade al menos un producto."); }
 }
 
 function verConsolidado() {
@@ -78,9 +55,15 @@ function verConsolidado() {
     });
     let mensaje = "TOTAL PARA DESPACHO:\n";
     let vacio = true;
-    for (let prod in totalConsolidado) { 
-        mensaje += `${prod}: ${totalConsolidado[prod]}\n`; 
-        vacio = false;
-    }
+    for (let prod in totalConsolidado) { mensaje += `${prod}: ${totalConsolidado[prod]}\n`; vacio = false; }
     alert(vacio ? "No hay pedidos aún." : mensaje);
+}
+
+function agregarUsuario() {
+    let nuevoU = prompt("Nombre del nuevo cliente:");
+    let nuevoP = prompt("Contraseña:");
+    if (nuevoU && nuevoP) {
+        usuarios[nuevoU.toLowerCase()] = nuevoP;
+        alert("Cliente " + nuevoU + " agregado correctamente.");
+    }
 }
