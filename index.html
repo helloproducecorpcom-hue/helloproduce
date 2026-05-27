@@ -2,30 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Produce Corp</title>
+    <title>HPC | Panel Administrativo</title>
+    <style>
+        :root {
+            --crema: #fcfbf8;
+            --naranja: #e67e22;
+            --verde: #27ae60;
+            --oro: #d4af37;
+        }
+        body { font-family: 'Helvetica Neue', sans-serif; background-color: var(--crema); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 350px; text-align: center; border-top: 5px solid var(--oro); }
+        h1 { color: var(--naranja); font-size: 1.2rem; margin-top: 15px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; text-transform: uppercase; }
+        button { width: 100%; padding: 12px; background: var(--verde); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        #adminPanel { display: none; }
+        .btn-reg { background: var(--oro); margin-top: 10px; }
+        .logo { width: 120px; margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 50px;">
+
+<div class="card">
+    <!-- Aquí agregamos tu logo -->
+    <img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" alt="Logo HPC" class="logo">
+    
+    <div id="loginSection">
         <h1>Hello Produce Corp</h1>
-        <div id="loginSection">
-            <input type="text" id="pass" placeholder="Código de acceso">
-            <button onclick="check()">INGRESAR</button>
-        </div>
-        <div id="adminPanel" style="display:none;">
-            <h2>Panel de Administrador</h2>
-            <p>Bienvenida, Valentina.</p>
-        </div>
+        <input type="text" id="pass" placeholder="Código de acceso">
+        <button onclick="check()">INGRESAR</button>
     </div>
-    <script>
-        function check() {
-            const p = document.getElementById('pass').value;
-            if (p === "VALENTINA" || p === "CYNTHIA") {
-                document.getElementById('loginSection').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-            } else {
-                alert("Código incorrecto");
-            }
+
+    <div id="adminPanel">
+        <h1>Gestión de Clientes</h1>
+        <input type="text" id="newName" placeholder="Nombre del Restaurante">
+        <input type="text" id="newAddr" placeholder="Dirección">
+        <button class="btn-reg" onclick="register()">REGISTRAR CLIENTE</button>
+    </div>
+</div>
+
+<script>
+    function check() {
+        const p = document.getElementById('pass').value.toUpperCase();
+        if (p === "VALENTINA" || p === "CYNTHIA") {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+        } else {
+            alert("Código incorrecto");
         }
-    </script>
+    }
+    function register() {
+        alert("Cliente registrado exitosamente en el sistema.");
+    }
+</script>
 </body>
 </html>
