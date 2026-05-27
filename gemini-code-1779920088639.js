@@ -1,48 +1,35 @@
-// Edita esta lista cuando necesites cambiar productos
-let productos = [
-    { n: "Aguacate", p: 5 },
-    { n: "Tomate", p: 2 },
-    { n: "Cebolla", p: 1.8 }
-];
-
 const cuentas = {
     "admin": { pass: "admin123", rol: "admin" },
     "chef": { pass: "cocina123", rol: "chef" }
 };
+const productos = [{n:"Aguacate", p:5}, {n:"Tomate", p:2}];
 let pedidos = [];
 
-function intentarIngreso(rol) {
+function intentarIngreso(rolEsperado) {
     let u = document.getElementById('user').value.toLowerCase();
     let p = document.getElementById('pass').value;
-    if (cuentas[u] && cuentas[u].pass === p && cuentas[u].rol === rol) {
+    if (cuentas[u] && cuentas[u].pass === p && cuentas[u].rol === rolEsperado) {
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('app-screen').classList.remove('hidden');
-        if (rol === 'admin') document.getElementById('admin-panel').classList.remove('hidden');
+        document.getElementById('role-title').innerText = "Panel: " + rolEsperado.toUpperCase();
+        if (rolEsperado === 'admin') document.getElementById('admin-panel').classList.remove('hidden');
         cargarCatalogo();
-    } else { alert("Datos incorrectos"); }
+    } else { alert("Usuario o contraseña incorrectos"); }
 }
 
 function cargarCatalogo() {
     let div = document.getElementById('lista-productos');
     div.innerHTML = "";
     productos.forEach(pr => {
-        div.innerHTML += `
-            <div class="producto-row">
-                <span>${pr.n} ($${pr.p})</span>
-                <input type="number" class="qty" data-name="${pr.n}" value="0">
-            </div>`;
+        div.innerHTML += `<p>${pr.n}: <input type="number" class="qty" data-name="${pr.n}" value="0" style="width:50px"></p>`;
     });
 }
 
 function procesarOrden() {
     let pedido = {};
-    document.querySelectorAll('.qty').forEach(i => {
-        if(i.value > 0) pedido[i.dataset.name] = i.value;
-    });
+    document.querySelectorAll('.qty').forEach(i => { if(i.value > 0) pedido[i.dataset.name] = i.value; });
     pedidos.push(pedido);
-    alert("¡Pre-factura generada con éxito!");
+    alert("¡Pre-factura generada!");
 }
 
-function verConsolidado() {
-    alert("Consolidado: " + JSON.stringify(pedidos));
-}
+function verConsolidado() { alert("Resumen: " + JSON.stringify(pedidos)); }
