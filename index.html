@@ -2,39 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Produce Corp</title>
+    <title>Hello Produce Corp - Sistema</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #fdfaf0; color: #333; padding: 20px; text-align: center; }
-        .logo { width: 150px; margin-bottom: 20px; }
-        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; }
-        .producto { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        button { background: #6a994e; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 15px; }
-        button:hover { background: #386641; }
-        input[type="number"] { width: 50px; padding: 5px; border: 1px solid #ddd; border-radius: 5px; }
-        .hidden { display: none; }
+        body { font-family: sans-serif; background: #fdfaf0; padding: 20px; text-align: center; }
+        .logo { width: 160px; margin-bottom: 20px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; }
+        button { background: #6a994e; color: white; border: none; padding: 12px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        input { padding: 10px; margin: 5px; width: 80%; border: 1px solid #ddd; border-radius: 5px; }
     </style>
 </head>
 <body>
-
-    <!-- Logo con la ruta corregida a tu carpeta -->
-    <img src="HPC%20%E2%80%94%20Cat%C3%A1logo%20Mayorista%20Premium_files/logo-hpc-CLIYfN25.jpeg" alt="Logo HPC" class="logo">
-
-    <div id="login-screen" class="card">
-        <h2>Bienvenida</h2>
-        <input type="text" id="user" placeholder="Usuario"><br>
-        <input type="password" id="pass" placeholder="Contraseña"><br>
+    <img src="HPC%20%E2%80%94%20Cat%C3%A1logo%20Mayorista%20Premium_files/logo-hpc-CLIYfN25.jpeg" class="logo">
+    
+    <div id="login" class="card">
+        <h2>Ingreso al Sistema</h2>
+        <input type="text" id="user" placeholder="Usuario">
+        <input type="password" id="pass" placeholder="Contraseña">
         <button onclick="login()">Entrar</button>
     </div>
 
-    <div id="app-screen" class="hidden" class="card">
-        <h1>Catálogo</h1>
-        <div id="lista-productos"></div>
-        <button onclick="enviarPedido()">Enviar Pedido</button>
-        <div id="admin-section" class="hidden">
+    <div id="app" style="display:none;" class="card">
+        <h2 id="welcome-msg"></h2>
+        <div id="catalogo"></div>
+        <button id="btn-accion" onclick="procesar()">Generar Pre-Factura</button>
+        <div id="admin-panel" style="display:none; margin-top:20px;">
             <hr>
-            <h3>Panel Admin</h3>
-            <button onclick="verConsolidado()">Ver Despachos</button>
-            <button onclick="agregarUsuario()" style="background:#d68c45;">Agregar Cliente</button>
+            <button onclick="verTotal()" style="background:#d68c45;">Ver Total Despachos</button>
         </div>
     </div>
 
