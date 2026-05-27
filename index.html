@@ -1,72 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Hello Produce Corp - Acceso</title>
-    <!-- Estilos originales -->
     <link rel="stylesheet" href="./HPC — Catálogo Mayorista Premium_files/styles-wcwTZXKF.css">
-    <style>
-        .admin-panel { background: #1a1a1a; border: 1px solid #c5c1b9; padding: 20px; border-radius: 12px; margin-top: 30px; color: #fcfbf8; text-align: left; }
-    </style>
 </head>
-<body class="bg-background flex flex-col items-center min-h-screen">
-    
-    <!-- Logo con ruta corregida -->
-    <header class="py-10">
-        <img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" alt="Hello Produce Corp" class="h-28 w-auto">
-    </header>
-
-    <div class="w-full max-w-md px-6">
-        <form id="loginForm" class="space-y-3">
-            <input type="text" id="clientCode" placeholder="CÓDIGO DE ACCESO" class="w-full p-4 border rounded-xl text-center uppercase">
-            <button type="submit" class="w-full p-4 bg-primary text-white rounded-xl">INGRESAR</button>
+<body>
+    <div style="text-align: center; padding-top: 50px;">
+        <img src="./HPC — Catálogo Mayorista Premium_files/logo-hpc-CLiYfN25.jpeg" width="200" alt="Logo">
+        <h1>Acceso Administrador</h1>
+        <form id="loginForm">
+            <input type="text" id="code" placeholder="ESCRIBE TU CÓDIGO" style="padding: 10px; text-transform: uppercase;">
+            <button type="submit" style="padding: 10px;">INGRESAR</button>
         </form>
-
-        <div id="adminPanel" class="admin-panel" style="display:none;">
-            <h3>Panel de Administración</h3>
-            <input type="text" id="newName" placeholder="Nombre Restaurante" class="w-full p-2 mb-2 text-black">
-            <input type="text" id="newAddr" placeholder="Dirección" class="w-full p-2 mb-2 text-black">
-            <button onclick="addClient()" class="w-full p-2 bg-yellow-600 text-white">REGISTRAR CLIENTE</button>
+        <div id="adminPanel" style="display:none; margin-top: 20px; background: #f4f4f4; padding: 20px;">
+            <h2>Panel de Gestión</h2>
+            <input type="text" id="newName" placeholder="Nombre Restaurante">
+            <input type="text" id="newAddr" placeholder="Dirección">
+            <button onclick="registerClient()">REGISTRAR</button>
         </div>
     </div>
 
     <script>
-        const admins = ["CYNTHIA", "VALENTINA"];
-        let clients = {
-            "ESQUINA-MEXICANA": "1361 Washington Ave, Miami Beach",
-            "COYOTE-TACO": "1351 Collins Ave, Miami Beach",
-            "RESTAURANTE-DON-SOMBRERO": "808 Collins Ave, Miami Beach",
-            "MAMAS-TACOS": "710 Washington Ave #3, Miami Beach",
-            "IL-BOLOGNESE": "1400 Ocean Drive LLC, Miami Beach",
-            "HAVANA-BEACH-RESTAURANT": "740 Ocean Drive, Miami Beach",
-            "ALMA-CUBANA": "650 Ocean Dr, Miami Beach",
-            "LA-VENTANA-COLOMBIAN-RESTAURANT": "710 Washington Ave #2, Miami Beach",
-            "ESQUINA-CUBANA": "710 Washington St, Miami Beach",
-            "HAVANA-VIEJA": "944 Washington Ave, Miami Beach",
-            "ATHENA-RESTAURANT": "560 Washington Ave, Miami Beach",
-            "LA-MULATA": "1443 Washington Ave, Miami Beach",
-            "OSTERIA-POSITANO": "1200 Collins Ave, Miami Beach",
-            "LITTLE-HABANA": "1051 Collins Ave, Miami Beach"
-        };
-
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const code = document.getElementById('clientCode').value.toUpperCase().trim();
-            if (admins.includes(code)) {
+            const code = document.getElementById('code').value.toUpperCase();
+            if (code === "VALENTINA" || code === "CYNTHIA") {
                 document.getElementById('adminPanel').style.display = 'block';
-                alert("Bienvenida Administradora");
-            } else if (clients[code]) {
-                window.location.href = 'catalogo.html';
             } else {
-                alert("Código no reconocido");
+                alert("Código incorrecto");
             }
         });
-
-        function addClient() {
-            const name = document.getElementById('newName').value;
-            const code = name.toUpperCase().replace(/\s+/g, '-');
-            clients[code] = document.getElementById('newAddr').value;
-            alert("Cliente registrado: " + code);
+        function registerClient() {
+            alert("Cliente registrado exitosamente");
         }
     </script>
 </body>
