@@ -2,45 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Produce Corp - Premium</title>
+    <title>Hello Produce Corp</title>
     <style>
-        :root { --primary: #6a994e; --secondary: #d68c45; --bg: #fdfaf0; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; display: flex; justify-content: center; padding: 40px 20px; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); width: 100%; max-width: 450px; text-align: center; }
-        .logo { width: 180px; margin-bottom: 30px; }
-        h1 { color: var(--primary); font-size: 24px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        button:hover { opacity: 0.9; }
-        .admin-btn { background: var(--secondary); }
-        .producto-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fdfaf0; display: flex; justify-content: center; padding: 40px; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .logo { width: 150px; margin-bottom: 20px; }
+        input { width: 90%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; margin-top: 10px; }
+        .btn-admin { background: #6a994e; }
+        .btn-chef { background: #d68c45; }
         .hidden { display: none; }
     </style>
 </head>
 <body>
+    <div class="card">
+        <!-- Logo con ruta limpia -->
+        <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+        
+        <div id="login-screen">
+            <h2>Ingreso al Sistema</h2>
+            <input type="text" id="user" placeholder="Usuario">
+            <input type="password" id="pass" placeholder="Contraseña">
+            <button class="btn-admin" onclick="intentarIngreso('admin')">Ingreso Administrador</button>
+            <button class="btn-chef" onclick="intentarIngreso('chef')">Ingreso Chef</button>
+        </div>
 
-<div class="card">
-    <img src="HPC%20%E2%80%94%20Cat%C3%A1logo%20Mayorista%20Premium_files/logo-hpc-CLIYfN25.jpeg" class="logo">
-    
-    <!-- Pantalla Login -->
-    <div id="login-screen">
-        <input type="text" id="user" placeholder="Usuario">
-        <input type="password" id="pass" placeholder="Contraseña">
-        <button onclick="intentarIngreso('admin')">Ingreso Administrador</button>
-        <button onclick="intentarIngreso('chef')" class="admin-btn">Ingreso Chef</button>
-    </div>
-
-    <!-- Pantalla App -->
-    <div id="app-screen" class="hidden">
-        <h1>Catálogo HPC</h1>
-        <div id="lista-productos"></div>
-        <button onclick="procesarOrden()">Generar Pre-Factura</button>
-        <div id="admin-panel" class="hidden">
-            <button onclick="verConsolidado()" class="admin-btn">Ver Total Despachos</button>
+        <div id="app-screen" class="hidden">
+            <h2 id="role-title"></h2>
+            <div id="lista-productos"></div>
+            <button class="btn-admin" onclick="procesarOrden()">Generar Pre-Factura</button>
+            <div id="admin-panel" class="hidden">
+                <button class="btn-chef" onclick="verConsolidado()">Ver Total Despachos</button>
+            </div>
         </div>
     </div>
-</div>
-
-<script src="gemini-code-1779920088639.js"></script>
+    <script src="gemini-code-1779920088639.js"></script>
 </body>
 </html>
